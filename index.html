@@ -12,29 +12,30 @@
     <!-- Хедер з вашим логотипом (на всю ширину блоку) -->
     <header class="w-full max-w-md text-center my-6 px-2">
         <div class="w-full flex items-center justify-center">
-            <!-- Логотип пропорційно масштабується відповідно до ширини блоку карток -->
             <img src="./1-02.png" alt="SSS Logo" class="w-full h-auto object-contain">
         </div>
         <p class="text-sm text-gray-500 mt-3 font-medium">Актуальні новини, корисні матеріали та звіти</p>
     </header>
 
-    <!-- Навігація / Категорії -->
-    <div class="w-full max-w-md flex justify-around mb-6 text-sm font-semibold border-b pb-2">
-        <a href="#news" class="text-blue-600 border-b-2 border-blue-600 pb-2">Новини</a>
-
+    <!-- Навігація / Інтерактивні вкладки (Tabs) -->
+    <div class="w-full max-w-md flex border-b mb-6 text-sm font-bold">
+        <button id="tab-news" class="flex-1 text-center pb-2 text-blue-600 border-b-2 border-blue-600 transition-all focus:outline-none">
+            Новини
+        </button>
+        <button id="tab-events" class="flex-1 text-center pb-2 text-gray-500 hover:text-blue-600 transition-all focus:outline-none">
+            Реєстрація на заходи
+        </button>
     </div>
 
-    <!-- Список карток (Контент) -->
-    <main class="w-full max-w-md space-y-4">
+    <!-- ================= РОЗДІЛ 1: НОВИНИ ================= -->
+    <main id="content-news" class="w-full max-w-md space-y-4">
 
         <!-- Картка 1 -->
         <a href="https://sss-ua.org/news/dopomoha-dlia-beryslavskoi-hromady-iaka-zhyve-pid-obstrilamy/" 
            target="_blank" 
            class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
-                <!-- Контейнер для фото (мініатюри) -->
                 <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
-                    <!-- Скопіюйте адресу фото цієї новини з сайту та вставте нижче замість тимчасового тексту -->
                     <img class="w-full h-full object-cover" 
                          src="https://sss-ua.org/wp-content/uploads/2026/05/Bereslaska-hromada.jpg" 
                          alt="Допомога для Бериславської громади">
@@ -54,7 +55,6 @@
            class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
                 <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
-                    <!-- Скопіюйте адресу фото цієї новини з сайту та вставте нижче -->
                     <img class="w-full h-full object-cover" 
                          src="https://sss-ua.org/wp-content/uploads/2026/05/pani-larisa-768x1024.jpg" 
                          alt="Послуги з шиття">
@@ -74,7 +74,6 @@
            class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
                 <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
-                    <!-- Скопіюйте адресу фото цієї новини з сайту та вставте нижче -->
                     <img class="w-full h-full object-cover" 
                          src="https://sss-ua.org/wp-content/uploads/2026/05/856x450.png" 
                          alt="Тренінг соцзахисту">
@@ -94,7 +93,6 @@
            class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
                 <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
-                    <!-- Скопіюйте адресу фото цієї новини з сайту та вставте нижче -->
                     <img class="w-full h-full object-cover" 
                          src="https://sss-ua.org/wp-content/uploads/2026/04/seriia-6_ua_856x450-1024x538.png" 
                          alt="Ради ВПО">
@@ -110,10 +108,53 @@
 
     </main>
 
+    <!-- ================= РОЗДІЛ 2: РЕЄСТРАЦІЯ НА ЗАХОДИ ================= -->
+    <main id="content-events" class="w-full max-w-md space-y-4 hidden">
+
+        <!-- Картка Заходу 1 -->
+        <div onclick="if (!event.target.closest('a')) window.open('https://sss-ua.org/yak-vziaty-uchast-u-forumi-rad-vpo/', '_blank')"
+             class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200 cursor-pointer">
+            <div class="p-4">
+                <!-- Контентна частина картки -->
+                <div class="flex items-center gap-4">
+                    <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
+                        <img class="w-full h-full object-cover" 
+                             src="https://sss-ua.org/wp-content/uploads/2025/04/YAk-vziaty-uchast_rozdil_Forum_Rad_VPO_1200x630_eng-copy-6-1.png" 
+                             alt="Як взяти участь у форумі Рад ВПО?">
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-[10px] uppercase tracking-wider font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded">Форум</span>
+                        <h3 class="font-semibold text-sm mt-1.5 leading-snug text-gray-900">
+                            Як взяти участь у форумі Рад ВПО?
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- Дві зручні кнопки дії внизу картки -->
+                <div class="mt-4 flex gap-2 border-t pt-3">
+                    <!-- Кнопка Детальніше (веде на новину) -->
+                    <a href="https://sss-ua.org/yak-vziaty-uchast-u-forumi-rad-vpo/" 
+                       target="_blank" 
+                       class="flex-1 text-center text-xs font-semibold py-2.5 px-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition">
+                        Детальніше
+                    </a>
+                    <!-- Кнопка Зареєструватись (веде на форму) -->
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwA3l1T40rU98abvij3HM8A-cFobo4mhfAeZnio-vxS-vMMQ/viewform" 
+                       target="_blank" 
+                       class="flex-1 text-center text-xs font-semibold py-2.5 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                        Зареєструватись
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
     <!-- Футер -->
     <footer class="mt-8 text-xs text-gray-400">
         © 2026 БФ «Стабілізейшен Суппорт Сервісез»
     </footer>
 
-</body>
-</html>
+    <!-- Простий скрипт для миттєвого перемикання вкладок -->
+    <script>
+        const btnN
