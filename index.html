@@ -16,7 +16,7 @@
         </div>
     </header>
 
-    <!-- Навігація / Інтерактивні вкладки (Tabs) з надійним викликом функцій onclick -->
+    <!-- Навігація / Інтерактивні вкладки (Tabs) -->
     <div class="w-full max-w-md flex border-b mb-6 text-sm font-bold">
         <button onclick="switchTab('news')" id="tab-news" class="flex-1 text-center pb-2 text-blue-600 border-b-2 border-blue-600 transition-all focus:outline-none">
             Новини
@@ -34,7 +34,8 @@
            target="_blank" 
            class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
-                <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
+                <!-- Прямокутний контейнер з пропорціями ваших фото 547х318 -->
+                <div class="w-28 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
                     <img class="w-full h-full object-cover" 
                          src="https://sss-ua.org/wp-content/uploads/2026/05/Bereslaska-hromada.jpg" 
                          alt="Допомога для Бериславської громади">
@@ -53,7 +54,7 @@
            target="_blank" 
            class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
-                <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
+                <div class="w-28 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
                     <img class="w-full h-full object-cover" 
                          src="https://sss-ua.org/wp-content/uploads/2026/05/pani-larisa-768x1024.jpg" 
                          alt="Послуги з шиття">
@@ -72,7 +73,7 @@
            target="_blank" 
            class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
-                <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
+                <div class="w-28 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
                     <img class="w-full h-full object-cover" 
                          src="https://sss-ua.org/wp-content/uploads/2026/05/856x450.png" 
                          alt="Тренінг соцзахисту">
@@ -91,7 +92,7 @@
            target="_blank" 
            class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
-                <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
+                <div class="w-28 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
                     <img class="w-full h-full object-cover" 
                          src="https://sss-ua.org/wp-content/uploads/2026/04/seriia-6_ua_856x450-1024x538.png" 
                          alt="Ради ВПО">
@@ -116,7 +117,8 @@
             <div class="p-4">
                 <!-- Контентна частина картки -->
                 <div class="flex items-center gap-4">
-                    <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
+                    <!-- Прямокутний контейнер з пропорціями ваших фото 547х318 -->
+                    <div class="w-28 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
                         <img class="w-full h-full object-cover" 
                              src="https://sss-ua.org/wp-content/uploads/2025/04/YAk-vziaty-uchast_rozdil_Forum_Rad_VPO_1200x630_eng-copy-6-1.png" 
                              alt="Як взяти участь у форумі Рад ВПО?">
@@ -131,13 +133,11 @@
 
                 <!-- Дві зручні кнопки дії внизу картки -->
                 <div class="mt-4 flex gap-2 border-t pt-3">
-                    <!-- Кнопка Детальніше (веде на новину) -->
                     <a href="https://sss-ua.org/yak-vziaty-uchast-u-forumi-rad-vpo/" 
                        target="_blank" 
                        class="flex-1 text-center text-xs font-semibold py-2.5 px-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition">
                         Детальніше
                     </a>
-                    <!-- Кнопка Зареєструватись (веде на форму) -->
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwA3l1T40rU98abvij3HM8A-cFobo4mhfAeZnio-vxS-vMMQ/viewform" 
                        target="_blank" 
                        class="flex-1 text-center text-xs font-semibold py-2.5 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
@@ -154,7 +154,7 @@
         © 2026 БФ «Стабілізейшен Суппорт Сервісез»
     </footer>
 
-    <!-- Покращений та надійний скрипт перемикання вкладок -->
+    <!-- Скрипт перемикання вкладок -->
     <script>
         function switchTab(tab) {
             const btnNews = document.getElementById('tab-news');
@@ -163,21 +163,13 @@
             const contentEvents = document.getElementById('content-events');
 
             if (tab === 'news') {
-                // Встановлюємо активний стиль для кнопки Новини
                 btnNews.className = "flex-1 text-center pb-2 text-blue-600 border-b-2 border-blue-600 transition-all focus:outline-none";
-                // Встановлюємо пасивний стиль для кнопки Заходи
                 btnEvents.className = "flex-1 text-center pb-2 text-gray-500 hover:text-blue-600 transition-all focus:outline-none";
-                
-                // Керуємо видимістю блоків
                 contentNews.classList.remove('hidden');
                 contentEvents.classList.add('hidden');
             } else if (tab === 'events') {
-                // Встановлюємо пасивний стиль для кнопки Новини
                 btnNews.className = "flex-1 text-center pb-2 text-gray-500 hover:text-blue-600 transition-all focus:outline-none";
-                // Встановлюємо активний стиль для кнопки Заходи
                 btnEvents.className = "flex-1 text-center pb-2 text-blue-600 border-b-2 border-blue-600 transition-all focus:outline-none";
-                
-                // Керуємо видимістю блоків
                 contentNews.classList.add('hidden');
                 contentEvents.classList.remove('hidden');
             }
