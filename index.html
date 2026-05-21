@@ -9,21 +9,19 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col items-center p-4">
 
-    <!-- Хедер з вашим логотипом -->
-    <header class="w-full max-w-md text-center my-6">
-        <div class="w-32 h-20 mx-auto flex items-center justify-center overflow-hidden">
-            <!-- Завантажуємо ваш логотип 1-02.png з репозиторію -->
-            <img src="./1-02.png" alt="SSS Logo" class="object-contain max-h-full max-w-full">
+    <!-- Хедер з вашим логотипом (на всю ширину блоку) -->
+    <header class="w-full max-w-md text-center my-6 px-2">
+        <div class="w-full flex items-center justify-center">
+            <!-- Логотип пропорційно масштабується відповідно до ширини блоку карток -->
+            <img src="./1-02.png" alt="SSS Logo" class="w-full h-auto object-contain">
         </div>
-        <h1 class="text-xl font-bold mt-3">Стабілізейшен Суппорт Сервісез</h1>
-        <p class="text-sm text-gray-500 mt-1">Актуальні новини, корисні матеріали та звіти</p>
+        <p class="text-sm text-gray-500 mt-3 font-medium">Актуальні новини, корисні матеріали та звіти</p>
     </header>
 
     <!-- Навігація / Категорії -->
     <div class="w-full max-w-md flex justify-around mb-6 text-sm font-semibold border-b pb-2">
         <a href="#news" class="text-blue-600 border-b-2 border-blue-600 pb-2">Новини</a>
-        <a href="#services" class="text-gray-500 hover:text-blue-600">Послуги</a>
-        <a href="#reports" class="text-gray-500 hover:text-blue-600">Звіти</a>
+
     </div>
 
     <!-- Список карток (Контент) -->
@@ -31,18 +29,19 @@
 
         <!-- Картка 1 -->
         <a href="https://sss-ua.org/news/dopomoha-dlia-beryslavskoi-hromady-iaka-zhyve-pid-obstrilamy/" 
-           data-wp-slug="dopomoha-dlia-beryslavskoi-hromady-iaka-zhyve-pid-obstrilamy"
            target="_blank" 
-           class="wp-card block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
+           class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
                 <!-- Контейнер для фото (мініатюри) -->
-                <div class="w-20 h-20 bg-blue-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
-                    <img class="wp-thumb w-full h-full object-cover hidden" src="" alt="Thumbnail">
-                    <span class="wp-fallback text-blue-600 font-bold text-xs text-center p-1">Берислав</span>
+                <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
+                    <!-- Скопіюйте адресу фото цієї новини з сайту та вставте нижче замість тимчасового тексту -->
+                    <img class="w-full h-full object-cover" 
+                         src="https://sss-ua.org/wp-content/uploads/2026/05/Bereslaska-hromada.jpg" 
+                         alt="Допомога для Бериславської громади">
                 </div>
                 <div class="flex-grow">
                     <span class="text-[10px] uppercase tracking-wider font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Допомога</span>
-                    <h3 class="wp-title font-semibold text-sm mt-1.5 leading-snug text-gray-900">
+                    <h3 class="font-semibold text-sm mt-1.5 leading-snug text-gray-900">
                         Допомога для Бериславської громади, яка живе під обстрілами
                     </h3>
                 </div>
@@ -51,17 +50,18 @@
 
         <!-- Картка 2 -->
         <a href="https://sss-ua.org/news/posluhy-z-shyttia-yak-khab-u-mykolaievi-dopomahaie-postrazhdalomu-naselenniu/" 
-           data-wp-slug="posluhy-z-shyttia-yak-khab-u-mykolaievi-dopomahaie-postrazhdalomu-naselenniu"
            target="_blank" 
-           class="wp-card block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
+           class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
-                <div class="w-20 h-20 bg-yellow-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
-                    <img class="wp-thumb w-full h-full object-cover hidden" src="" alt="Thumbnail">
-                    <span class="wp-fallback text-yellow-600 font-bold text-xs text-center p-1">Миколаїв</span>
+                <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
+                    <!-- Скопіюйте адресу фото цієї новини з сайту та вставте нижче -->
+                    <img class="w-full h-full object-cover" 
+                         src="https://sss-ua.org/wp-content/uploads/2026/05/pani-larisa-768x1024.jpg" 
+                         alt="Послуги з шиття">
                 </div>
                 <div class="flex-grow">
                     <span class="text-[10px] uppercase tracking-wider font-bold text-yellow-600 bg-yellow-50 px-2 py-0.5 rounded">Хаби</span>
-                    <h3 class="wp-title font-semibold text-sm mt-1.5 leading-snug text-gray-900">
+                    <h3 class="font-semibold text-sm mt-1.5 leading-snug text-gray-900">
                         Послуги з шиття: як хаб у Миколаєві допомагає постраждалому населенню
                     </h3>
                 </div>
@@ -70,17 +70,18 @@
 
         <!-- Картка 3 -->
         <a href="https://sss-ua.org/news/provely-treninh-z-protydii-profesiynomu-vyhoranniu-dlia-fakhivchyn-systemy-sotsialnoho-zakhystu-zaporizkoi-oblasti/" 
-           data-wp-slug="provely-treninh-z-protydii-profesiynomu-vyhoranniu-dlia-fakhivchyn-systemy-sotsialnoho-zakhystu-zaporizkoi-oblasti"
            target="_blank" 
-           class="wp-card block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
+           class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
-                <div class="w-20 h-20 bg-green-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
-                    <img class="wp-thumb w-full h-full object-cover hidden" src="" alt="Thumbnail">
-                    <span class="wp-fallback text-green-600 font-bold text-xs text-center p-1">Запоріжжя</span>
+                <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
+                    <!-- Скопіюйте адресу фото цієї новини з сайту та вставте нижче -->
+                    <img class="w-full h-full object-cover" 
+                         src="https://sss-ua.org/wp-content/uploads/2026/05/856x450.png" 
+                         alt="Тренінг соцзахисту">
                 </div>
                 <div class="flex-grow">
                     <span class="text-[10px] uppercase tracking-wider font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Тренінги</span>
-                    <h3 class="wp-title font-semibold text-sm mt-1.5 leading-snug text-gray-900">
+                    <h3 class="font-semibold text-sm mt-1.5 leading-snug text-gray-900">
                         Провели тренінг з протидії професійному вигоранню для фахівчинь системи соціального захисту Запорізької області
                     </h3>
                 </div>
@@ -89,17 +90,18 @@
 
         <!-- Картка 4 -->
         <a href="https://sss-ua.org/news/navchalnyy-videokurs-rady-vpo-vid-adaptatsii-do-vplyvu-holovne-z-shostoi-serii/" 
-           data-wp-slug="navchalnyy-videokurs-rady-vpo-vid-adaptatsii-do-vplyvu-holovne-z-shostoi-serii"
            target="_blank" 
-           class="wp-card block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
+           class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
             <div class="p-4 flex items-center gap-4">
-                <div class="w-20 h-20 bg-purple-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
-                    <img class="wp-thumb w-full h-full object-cover hidden" src="" alt="Thumbnail">
-                    <span class="wp-fallback text-purple-600 font-bold text-xs text-center p-1">ВПО</span>
+                <div class="w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-100">
+                    <!-- Скопіюйте адресу фото цієї новини з сайту та вставте нижче -->
+                    <img class="w-full h-full object-cover" 
+                         src="https://sss-ua.org/wp-content/uploads/2026/04/seriia-6_ua_856x450-1024x538.png" 
+                         alt="Ради ВПО">
                 </div>
                 <div class="flex-grow">
                     <span class="text-[10px] uppercase tracking-wider font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded">Відеокурс</span>
-                    <h3 class="wp-title font-semibold text-sm mt-1.5 leading-snug text-gray-900">
+                    <h3 class="font-semibold text-sm mt-1.5 leading-snug text-gray-900">
                         Навчальний відеокурс «Ради ВПО: від адаптації до впливу»: головне з шостої серії
                     </h3>
                 </div>
@@ -113,51 +115,5 @@
         © 2026 БФ «Стабілізейшен Суппорт Сервісез»
     </footer>
 
-    <!-- Магічний JavaScript для автоматичного підвантаження картинок та повних заголовків -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const cards = document.querySelectorAll(".wp-card");
-            
-            cards.forEach(card => {
-                const slug = card.getAttribute("data-wp-slug");
-                const thumbImg = card.querySelector(".wp-thumb");
-                const fallbackSpan = card.querySelector(".wp-fallback");
-                const titleEl = card.querySelector(".wp-title");
-                
-                if (slug) {
-                    // Звертаємось до публічного API вашого сайту sss-ua.org
-                    fetch(`https://sss-ua.org/wp-json/wp/v2/posts?slug=${slug}&_embed`)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data && data.length > 0) {
-                                const post = data[0];
-                                
-                                // 1. Оновлюємо заголовок на повний оригінальний з сайту
-                                if (post.title && post.title.rendered) {
-                                    const tempDiv = document.createElement("div");
-                                    tempDiv.innerHTML = post.title.rendered;
-                                    titleEl.textContent = tempDiv.textContent || tempDiv.innerText;
-                                }
-                                
-                                // 2. Завантажуємо оригінальне головне фото новини
-                                if (post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]) {
-                                    const imgUrl = post._embedded['wp:featuredmedia'][0].source_url;
-                                    if (imgUrl) {
-                                        thumbImg.src = imgUrl;
-                                        thumbImg.classList.remove("hidden"); // Показуємо фото
-                                        if (fallbackSpan) fallbackSpan.classList.add("hidden"); // Ховаємо текст-заглушку
-                                    }
-                                }
-                            }
-                        })
-                        .catch(err => {
-                            // Якщо на сайті увімкнено обмеження безпеки або CORS, 
-                            // консоль покаже попередження, але сторінка залишиться красивою зі статичними текстами.
-                            console.warn("Дані завантажуються в статичному режимі для: " + slug);
-                        });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
