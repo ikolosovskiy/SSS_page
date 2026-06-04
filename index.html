@@ -1,180 +1,1000 @@
+Ось оновлена версія вашого HTML-файлу, в яку інтегровано всі необхідні зміни.
+
+Що було зроблено:
+
+1.  Соціальні мережі внизу сторінки: Додано блок іконок соцмереж із посиланнями
+    на сайт, Facebook, Instagram, X (Twitter), YouTube (із виправленим
+    пробілом) та Telegram.
+2.  Вкладка «Все для рад ВПО»:
+      - До списку основних категорій додано «Все для рад ВПО».
+      - При натисканні на неї інтерфейс перемикається на під-вкладки:
+        «Матеріали» та «Корисні посилання» з кнопкою «← Назад» для
+        повернення на головне меню (аналогічно логіці архіву).
+      - В адмін-панелі (у випадаючому списку категорій форми) додано нові
+        варіанти: «Ради ВПО: Матеріали» та «Ради ВПО: Корисні посилання»
+        для зручного додавання нових карток у відповідні розділи.
+3.  Блок закріплених посилань (під синьою лінією): Внизу під кожною категорією
+    розміщено лінію фірмового темно-синього кольору (navy) та дві закріплені
+    картки: «Придбати гру "Бути жінкою"» та «Підтримати фонд».
+4.  Гаряча лінія (під жовтою лінією): Нижче закріплених посилань розміщено лінію
+    золотого кольору (accentGold) та клікабельний номер телефону гарячої лінії
+    0 800 332 740 (при натисканні на мобільних пристроях автоматично
+    відкривається системний набір номера). Колір номера телефону —
+    фірмовий жовтий.
+
+Повний оновлений код (index.html):
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SSS-UA | Важливі посилання</title>
-    <!-- Підключаємо Tailwind CSS для стилізації -->
+    <!-- Підключаємо Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col items-center p-4">
+    <!-- Підключаємо бібліотеку Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Підключаємо Flatpickr для україномовного календаря -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/uk.js"></script>
 
-    <!-- Хедер з вашим логотипом (на всю ширину блоку) -->
-    <header class="w-full max-w-md text-center my-6 px-2">
-        <div class="w-full flex items-center justify-center">
-            <img src="./1-02.png" alt="SSS Logo" class="w-full h-auto object-contain">
-        </div>
-    </header>
-
-    <!-- Навігація / Інтерактивні вкладки (Tabs) -->
-    <div class="w-full max-w-md flex border-b mb-6 text-sm font-bold">
-        <button onclick="switchTab('news')" id="tab-news" class="flex-1 text-center pb-2 text-blue-600 border-b-2 border-blue-600 transition-all focus:outline-none">
-            Новини
-        </button>
-        <button onclick="switchTab('events')" id="tab-events" class="flex-1 text-center pb-2 text-gray-500 hover:text-blue-600 transition-all focus:outline-none">
-            Реєстрація на заходи
-        </button>
-    </div>
-
-    <!-- ================= РОЗДІЛ 1: НОВИНИ ================= -->
-    <main id="content-news" class="w-full max-w-md space-y-4">
-
-        <!-- Картка 1 -->
-        <a href="https://sss-ua.org/news/dopomoha-dlia-beryslavskoi-hromady-iaka-zhyve-pid-obstrilamy/" 
-           target="_blank" 
-           class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
-            <div class="p-4 flex items-center gap-4">
-                <!-- Прямокутний контейнер з пропорціями ваших фото 547х318 -->
-                <div class="w-28 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
-                    <img class="w-full h-full object-cover" 
-                         src="https://sss-ua.org/wp-content/uploads/2026/05/Bereslaska-hromada.jpg" 
-                         alt="Допомога для Бериславської громади">
-                </div>
-                <div class="flex-grow">
-                    <span class="text-[10px] uppercase tracking-wider font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Допомога</span>
-                    <h3 class="font-semibold text-sm mt-1.5 leading-snug text-gray-900">
-                        Допомога для Бериславської громади, яка живе під обстрілами
-                    </h3>
-                </div>
-            </div>
-        </a>
-
-        <!-- Картка 2 -->
-        <a href="https://sss-ua.org/news/posluhy-z-shyttia-yak-khab-u-mykolaievi-dopomahaie-postrazhdalomu-naselenniu/" 
-           target="_blank" 
-           class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
-            <div class="p-4 flex items-center gap-4">
-                <div class="w-28 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
-                    <img class="w-full h-full object-cover" 
-                         src="https://sss-ua.org/wp-content/uploads/2026/05/pani-larisa-768x1024.jpg" 
-                         alt="Послуги з шиття">
-                </div>
-                <div class="flex-grow">
-                    <span class="text-[10px] uppercase tracking-wider font-bold text-yellow-600 bg-yellow-50 px-2 py-0.5 rounded">Хаби</span>
-                    <h3 class="font-semibold text-sm mt-1.5 leading-snug text-gray-900">
-                        Послуги з шиття: як хаб у Миколаєві допомагає постраждалому населенню
-                    </h3>
-                </div>
-            </div>
-        </a>
-
-        <!-- Картка 3 -->
-        <a href="https://sss-ua.org/news/provely-treninh-z-protydii-profesiynomu-vyhoranniu-dlia-fakhivchyn-systemy-sotsialnoho-zakhystu-zaporizkoi-oblasti/" 
-           target="_blank" 
-           class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
-            <div class="p-4 flex items-center gap-4">
-                <div class="w-28 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
-                    <img class="w-full h-full object-cover" 
-                         src="https://sss-ua.org/wp-content/uploads/2026/05/856x450.png" 
-                         alt="Тренінг соцзахисту">
-                </div>
-                <div class="flex-grow">
-                    <span class="text-[10px] uppercase tracking-wider font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Тренінги</span>
-                    <h3 class="font-semibold text-sm mt-1.5 leading-snug text-gray-900">
-                        Провели тренінг з протидії професійному вигоранню для фахівчинь системи соціального захисту Запорізької області
-                    </h3>
-                </div>
-            </div>
-        </a>
-
-        <!-- Картка 4 -->
-        <a href="https://sss-ua.org/news/navchalnyy-videokurs-rady-vpo-vid-adaptatsii-do-vplyvu-holovne-z-shostoi-serii/" 
-           target="_blank" 
-           class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200">
-            <div class="p-4 flex items-center gap-4">
-                <div class="w-28 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
-                    <img class="w-full h-full object-cover" 
-                         src="https://sss-ua.org/wp-content/uploads/2026/04/seriia-6_ua_856x450-1024x538.png" 
-                         alt="Ради ВПО">
-                </div>
-                <div class="flex-grow">
-                    <span class="text-[10px] uppercase tracking-wider font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded">Відеокурс</span>
-                    <h3 class="font-semibold text-sm mt-1.5 leading-snug text-gray-900">
-                        Навчальний відеокурс «Ради ВПО: від адаптації до впливу»: головне з шостої серії
-                    </h3>
-                </div>
-            </div>
-        </a>
-
-    </main>
-
-    <!-- ================= РОЗДІЛ 2: РЕЄСТРАЦІЯ НА ЗАХОДИ ================= -->
-    <main id="content-events" class="w-full max-w-md space-y-4 hidden">
-
-        <!-- Картка Заходу 1 -->
-        <div onclick="if (!event.target.closest('a')) window.open('https://sss-ua.org/yak-vziaty-uchast-u-forumi-rad-vpo/', '_blank')"
-             class="block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:scale-[1.01] transition-all duration-200 cursor-pointer">
-            <div class="p-4">
-                <!-- Контентна частина картки -->
-                <div class="flex items-center gap-4">
-                    <!-- Прямокутний контейнер з пропорціями ваших фото 547х318 -->
-                    <div class="w-28 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
-                        <img class="w-full h-full object-cover" 
-                             src="https://sss-ua.org/wp-content/uploads/2025/04/YAk-vziaty-uchast_rozdil_Forum_Rad_VPO_1200x630_eng-copy-6-1.png" 
-                             alt="Як взяти участь у форумі Рад ВПО?">
-                    </div>
-                    <div class="flex-grow">
-                        <span class="text-[10px] uppercase tracking-wider font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded">Форум</span>
-                        <h3 class="font-semibold text-sm mt-1.5 leading-snug text-gray-900">
-                            Як взяти участь у форумі Рад ВПО?
-                        </h3>
-                    </div>
-                </div>
-
-                <!-- Дві зручні кнопки дії внизу картки -->
-                <div class="mt-4 flex gap-2 border-t pt-3">
-                    <a href="https://sss-ua.org/yak-vziaty-uchast-u-forumi-rad-vpo/" 
-                       target="_blank" 
-                       class="flex-1 text-center text-xs font-semibold py-2.5 px-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition">
-                        Детальніше
-                    </a>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwA3l1T40rU98abvij3HM8A-cFobo4mhfAeZnio-vxS-vMMQ/viewform" 
-                       target="_blank" 
-                       class="flex-1 text-center text-xs font-semibold py-2.5 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                        Зареєструватись
-                    </a>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Футер -->
-    <footer class="mt-8 text-xs text-gray-400">
-        © 2026 БФ «Стабілізейшен Суппорт Сервісез»
-    </footer>
-
-    <!-- Скрипт перемикання вкладок -->
     <script>
-        function switchTab(tab) {
-            const btnNews = document.getElementById('tab-news');
-            const btnEvents = document.getElementById('tab-events');
-            const contentNews = document.getElementById('content-news');
-            const contentEvents = document.getElementById('content-events');
-
-            if (tab === 'news') {
-                btnNews.className = "flex-1 text-center pb-2 text-blue-600 border-b-2 border-blue-600 transition-all focus:outline-none";
-                btnEvents.className = "flex-1 text-center pb-2 text-gray-500 hover:text-blue-600 transition-all focus:outline-none";
-                contentNews.classList.remove('hidden');
-                contentEvents.classList.add('hidden');
-            } else if (tab === 'events') {
-                btnNews.className = "flex-1 text-center pb-2 text-gray-500 hover:text-blue-600 transition-all focus:outline-none";
-                btnEvents.className = "flex-1 text-center pb-2 text-blue-600 border-b-2 border-blue-600 transition-all focus:outline-none";
-                contentNews.classList.add('hidden');
-                contentEvents.classList.remove('hidden');
+        // Налаштування фірмових та акцентних кольорів організації в Tailwind
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#214e34',     // Зелений (активна вкладка)
+                        accentGold: '#e09f3e',  // Жовтий / Золотий
+                        navy: '#021538',        // Темно-синій
+                        crimson: '#9d292b'      // Червоний
+                    }
+                }
             }
         }
     </script>
+    <style>
+        /* Стиль для елемента, який перетягують */
+        .dragging {
+            opacity: 0.5;
+            border: 2px dashed #214e34;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col items-center p-4">
 
+    <!-- Панель адміна (показується тільки коли авторизовано) -->
+    <div id="admin-bar" class="w-full max-w-md bg-navy text-white text-xs px-4 py-2.5 rounded-xl mb-4 hidden flex items-center justify-between shadow-md">
+        <span class="font-semibold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Режим адміна
+        </span>
+        <div class="flex gap-2">
+            <button onclick="openModal()" class="bg-primary hover:bg-opacity-90 px-3 py-1 rounded font-bold transition">
+                + Додати
+            </button>
+            <button onclick="logout()" class="bg-crimson hover:bg-opacity-90 px-3 py-1 rounded font-bold transition">
+                Вийти
+            </button>
+        </div>
+    </div>
+
+    <!-- Хедер з логотипом та кнопкою Увійти -->
+    <header class="w-full max-w-md flex flex-col items-center my-4 px-2 relative">
+        <button id="login-btn" onclick="openLoginModal()" class="absolute right-2 top-0 z-30 text-xs border border-primary text-primary hover:bg-primary hover:text-white px-3 py-1.5 rounded-lg font-bold transition">
+            Увійти
+        </button>
+        <div class="w-full flex items-center justify-center mt-8">
+            <img src="./1-02.png" alt="SSS Logo" class="w-full h-auto max-h-24 object-contain" onerror="this.src='https://sss-ua.org/wp-content/uploads/2022/11/logo_main.png'">
+        </div>
+    </header>
+
+    <!-- Контейнер навігації (Вкладки) -->
+    <div id="tabs-wrapper" class="w-full max-w-md mb-6">
+        <!-- Стандартні вкладки -->
+        <div id="tabs-container" class="flex border-b text-xs font-bold w-full overflow-x-auto gap-1"></div>
+        
+        <!-- Архівні/Суб-вкладки -->
+        <div id="archive-tabs-container" class="hidden w-full">
+            <!-- Кнопка Назад -->
+            <button id="back-btn" onclick="exitSubView()" class="w-full mb-4 flex items-center justify-center gap-1.5 py-2.5 border border-primary text-primary hover:bg-primary hover:text-white rounded-lg font-bold text-xs transition">
+                ← Назад
+            </button>
+            <!-- Під-вкладки -->
+            <div id="archive-subtabs" class="flex border-b text-xs font-bold w-full"></div>
+        </div>
+    </div>
+
+    <!-- Основний контейнер для карток -->
+    <main id="content-container" class="w-full max-w-md space-y-4"></main>
+
+    <!-- ================= ЗАКРІПЛЕНІ ПОСИЛАННЯ ТА ГАРЯЧА ЛІНІЯ ================= -->
+    <div class="w-full max-w-md mt-6 px-1">
+        <!-- Синя лінія (фірмовий колір) -->
+        <div class="h-[2px] bg-navy w-full my-4"></div>
+        
+        <!-- Закріплені посилання -->
+        <div class="space-y-3">
+            <a href="https://www.facebook.com/WomanGAME" target="_blank" class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition duration-200">
+                <span class="font-semibold text-sm text-gray-800">Придбати гру «Бути жінкою»</span>
+                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+            <a href="https://send.monobank.ua/jar/544hBBQBy3" target="_blank" class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition duration-200">
+                <span class="font-semibold text-sm text-gray-800">Підтримати фонд</span>
+                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Жовта лінія (фірмовий колір фонду) -->
+        <div class="h-[2px] bg-accentGold w-full my-4"></div>
+
+        <!-- Гаряча лінія -->
+        <div class="text-center py-2">
+            <a href="tel:0800332740" class="inline-flex items-center gap-1.5 font-bold text-base hover:opacity-90 transition">
+                <span class="text-gray-800">Гаряча лінія:</span>
+                <span class="text-accentGold">0 800 332 740</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ================= СОЦІАЛЬНІ МЕРЕЖІ ================= -->
+    <div class="flex justify-center items-center gap-5 mt-8 mb-2">
+        <!-- Вебсайт -->
+        <a href="https://sss-ua.org/" target="_blank" class="text-gray-400 hover:text-primary transition" title="Вебсайт">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3a15.3 15.3 0 014.5 9c0 3.1-1.6 6-4.5 9s-4.5-5.9-4.5-9 1.6-6 4.5-9z"></path>
+            </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/stabilizationsupportservices" target="_blank" class="text-gray-400 hover:text-primary transition" title="Facebook">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
+            </svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/stabilizationsupportservices/" target="_blank" class="text-gray-400 hover:text-primary transition" title="Instagram">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+        </a>
+        <!-- Twitter/X -->
+        <a href="https://x.com/SSS_Ukraine" target="_blank" class="text-gray-400 hover:text-primary transition" title="X (Twitter)">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+        </a>
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/channel/UC3nkNFUE6uUldRGf1KTfxqw" target="_blank" class="text-gray-400 hover:text-primary transition" title="YouTube">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+        </a>
+        <!-- Telegram -->
+        <a href="https://t.me/sss_ukraine" target="_blank" class="text-gray-400 hover:text-primary transition" title="Telegram">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.35-.49.97-.74 3.79-1.65 6.32-2.73 7.59-3.25 3.61-1.48 4.36-1.74 4.85-1.75.11 0 .35.03.5.16.13.1.17.24.18.34z"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Футер -->
+    <footer class="mb-6 text-[10px] text-gray-400 text-center">
+        © 2026 БФ «Стабілізейшен Суппорт Сервісез»
+    </footer>
+
+    <!-- ================= МОДАЛЬНЕ ВІКНО: ВХІД ================= -->
+    <div id="login-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-xs shadow-xl">
+            <h3 class="font-bold text-lg text-navy mb-4 text-center">Вхід в адмін-панель</h3>
+            <input type="password" id="admin-password" placeholder="Введіть пароль" class="w-full border p-2.5 rounded-lg mb-4 text-sm focus:outline-none focus:border-primary">
+            <div id="login-error" class="text-xs text-crimson mb-3 hidden text-center">Невірний пароль!</div>
+            <div class="flex gap-2">
+                <button onclick="closeLoginModal()" class="flex-1 py-2 text-sm text-gray-500 hover:bg-gray-100 rounded-lg font-semibold transition">Скасувати</button>
+                <button onclick="login()" class="flex-1 py-2 text-sm bg-primary text-white rounded-lg font-semibold hover:bg-opacity-90 transition">Увійти</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= МОДАЛЬНЕ ВІКНО: ДОДАННЯ / РЕДАГУВАННЯ ================= -->
+    <div id="item-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden overflow-y-auto">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl my-8">
+            <h3 id="modal-title" class="font-bold text-lg text-navy mb-4">Додати посилання</h3>
+            
+            <input type="hidden" id="edit-id">
+
+            <div class="space-y-4 text-sm">
+                <div>
+                    <label class="block font-semibold mb-1 text-gray-700">Заголовок новини чи заходу</label>
+                    <input type="text" id="item-title" placeholder="Введіть заголовок" class="w-full border p-2.5 rounded-lg focus:outline-none focus:border-primary">
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-1 text-gray-700">Посилання</label>
+                    <input type="url" id="item-url" placeholder="https://example.com" class="w-full border p-2.5 rounded-lg focus:outline-none focus:border-primary">
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-1 text-gray-700">Категорія</label>
+                    <select id="item-category" class="w-full border p-2.5 rounded-lg focus:outline-none focus:border-primary">
+                        <option value="news">Новини</option>
+                        <option value="events">Реєстрація</option>
+                        <option value="materials">Корисні матеріали</option>
+                        <option value="vpo_materials">Ради ВПО: Матеріали</option>
+                        <option value="vpo_links">Ради ВПО: Корисні посилання</option>
+                    </select>
+                </div>
+
+                <div class="border-t pt-3">
+                    <label class="block font-semibold mb-1 text-gray-700 flex justify-between items-center">
+                        <span>Завантажити фото</span>
+                        <span class="text-xs text-gray-400 font-normal">Файл або URL</span>
+                    </label>
+                    <input type="file" id="item-file" accept="image/*" onchange="previewUploadedImage(event)" class="w-full border p-1 rounded-lg text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-white hover:file:bg-opacity-90">
+                    <div class="text-center my-2 text-xs text-gray-400">- або вставте URL картинки -</div>
+                    <input type="url" id="item-image-url" oninput="previewUrlImage()" placeholder="https://example.com/photo.jpg" class="w-full border p-2.5 rounded-lg text-xs focus:outline-none focus:border-primary">
+                    
+                    <!-- Попередній перегляд -->
+                    <div class="mt-3 flex items-center gap-4 border p-2 rounded-lg bg-gray-50">
+                        <div class="w-16 aspect-[547/318] bg-gray-200 rounded overflow-hidden flex-shrink-0">
+                            <img id="img-preview" src="" class="w-full h-full object-cover hidden" alt="Preview">
+                        </div>
+                        <span id="preview-text" class="text-xs text-gray-400">Зображення не вибрано</span>
+                    </div>
+                </div>
+
+                <div class="border-t pt-3">
+                    <label class="block font-semibold mb-1 text-gray-700 flex items-center gap-1.5">
+                        Посилання на реєстрацію <span class="text-xs text-gray-400 font-normal">(опціонально)</span>
+                    </label>
+                    <input type="url" id="item-reg-url" placeholder="Для вкладки реєстрацій (якщо потрібна кнопка)" class="w-full border p-2.5 rounded-lg focus:outline-none focus:border-primary">
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-1 text-gray-700 flex items-center gap-1.5">
+                        Дата завершення події <span class="text-xs text-gray-400 font-normal">(опціонально)</span>
+                    </label>
+                    <input type="text" id="item-expire" placeholder="Оберіть дату" class="w-full border p-2.5 rounded-lg focus:outline-none focus:border-primary">
+                </div>
+            </div>
+
+            <div class="flex gap-2 mt-6">
+                <button onclick="closeModal()" class="flex-1 py-2 text-sm text-gray-500 hover:bg-gray-100 rounded-lg font-semibold transition">Скасувати</button>
+                <button id="save-btn" onclick="saveItem()" class="flex-1 py-2 text-sm bg-primary text-white rounded-lg font-semibold hover:bg-opacity-90 transition">Зберегти</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= СЛУЖБОВІ СКРИПТИ ================= -->
+    <script>
+        const SUPABASE_URL = "https://djxgjmftmmlrwofrglos.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_BGyc87lQIPlziBbIC2A_PQ_pGnlthMw";
+
+        let supabaseClient = null;
+        let fpInstance = null;
+
+        try {
+            if (SUPABASE_URL.includes("ВАШ_ПРОЄКТ") || SUPABASE_ANON_KEY.includes("ВАШ_ПУБЛІЧНИЙ_ANON_KEY")) {
+                console.warn("Увага: Ключі Supabase не налаштовано. Працює локальний демо-режим.");
+            } else {
+                const { createClient } = supabase;
+                supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+        } catch (e) {
+            console.error("Не вдалося ініціалізувати Supabase:", e);
+        }
+
+        const DEFAULT_ITEMS = [
+            {
+                id: "1",
+                title: "Допомога для Бериславської громади, яка живе под обстрілами",
+                category: "news",
+                url: "https://sss-ua.org/news/dopomoha-dlia-beryslavskoi-hromady-iaka-zhyve-pid-obstrilamy/",
+                image: "https://sss-ua.org/wp-content/uploads/2026/05/Bereslaska-hromada.jpg",
+                position: 0
+            },
+            {
+                id: "2",
+                title: "Послуги з шиття: як хаб у Миколаєві допомагає постраждалому населенню",
+                category: "news",
+                url: "https://sss-ua.org/news/posluhy-z-shyttia-yak-khab-u-myколаievi-dopomahaie-postrazhdalomu-naselenniu/",
+                image: "https://sss-ua.org/wp-content/uploads/2026/05/pani-larisa-768x1024.jpg",
+                position: 1
+            },
+            {
+                id: "3",
+                title: "Як взяти участь у форумі Рад ВПО?",
+                category: "events",
+                url: "https://sss-ua.org/yak-vziaty-uchast-u-forumi-rad-vpo/",
+                regUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfwA3l1T40rU98abvij3HM8A-cFobo4mhfAeZnio-vxS-vMMQ/viewform",
+                image: "https://sss-ua.org/wp-content/uploads/2025/04/YAk-vziaty-uchast_rozdil_Forum_Rad_VPO_1200x630_eng-copy-6-1.png",
+                expireDate: "2026-06-15",
+                position: 2
+            },
+            {
+                id: "4",
+                title: "Матеріали для навчання координаторів гуманітарних штабів",
+                category: "materials",
+                url: "https://sss-ua.org/",
+                image: "https://sss-ua.org/wp-content/uploads/2026/04/seriia-6_ua_856x450-1024x538.png",
+                position: 3
+            }
+        ];
+
+        const MAIN_CATEGORIES = {
+            news: "Новини",
+            events: "Реєстрація",
+            materials: "Корисні матеріали",
+            vpo: "Все для рад ВПО",
+            archive: "Архів"
+        };
+
+        const ARCHIVE_CATEGORIES = {
+            archive_materials: "Новини",
+            archive_useful: "Корисні матеріали"
+        };
+
+        const VPO_CATEGORIES = {
+            vpo_materials: "Матеріали",
+            vpo_links: "Корисні посилання"
+        };
+
+        let items = [];
+        let processedItems = [];
+        let activeTab = 'news';
+        let inArchiveView = false;
+        let inVpoView = false;
+        let isAdmin = false;
+        let activeDropdownId = null;
+        let localUploadedFile = null;
+
+        (async () => {
+            fpInstance = flatpickr("#item-expire", {
+                locale: "uk",
+                dateFormat: "Y-m-d",
+                allowInput: true
+            });
+
+            if (sessionStorage.getItem('sss_is_admin') === 'true') {
+                enableAdminMode();
+            }
+            await fetchItems();
+        })();
+
+        async function fetchItems() {
+            if (!supabaseClient) {
+                console.log("Завантаження дефолтних посилань (локальний режим)...");
+                items = DEFAULT_ITEMS;
+                processDataAndRender();
+                return;
+            }
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('hub_items')
+                    .select('*')
+                    .order('position', { ascending: true });
+
+                if (error) {
+                    console.error("Помилка зв'язку з Supabase, завантажуємо локальний бекап:", error);
+                    items = DEFAULT_ITEMS;
+                    processDataAndRender();
+                    return;
+                }
+
+                if (data.length === 0) {
+                    console.log("База даних порожня. Запускаємо автозаповнення демо-даними...");
+                    
+                    const seedData = DEFAULT_ITEMS.map((item, idx) => ({
+                        title: item.title,
+                        url: item.url,
+                        category: item.category,
+                        image: item.image,
+                        reg_url: item.regUrl || null,
+                        expire_date: item.expireDate || null,
+                        position: idx
+                    }));
+
+                    const { data: seededData, error: seedError } = await supabaseClient
+                        .from('hub_items')
+                        .insert(seedData)
+                        .select();
+
+                    if (seedError) {
+                        console.error("Не вдалося виконати автозаповнення:", seedError);
+                        items = DEFAULT_ITEMS;
+                    } else {
+                        items = seededData.map(row => ({
+                            id: row.id,
+                            title: row.title,
+                            url: row.url,
+                            category: row.category,
+                            image: row.image,
+                            regUrl: row.reg_url,
+                            expireDate: row.expire_date,
+                            position: row.position
+                        }));
+                    }
+                } else {
+                    items = data.map(row => ({
+                        id: row.id,
+                        title: row.title,
+                        url: row.url,
+                        category: row.category,
+                        image: row.image,
+                        regUrl: row.reg_url,
+                        expireDate: row.expire_date,
+                        position: row.position
+                    }));
+                }
+            } catch (dbErr) {
+                console.error("Помилка роботи з БД, увімкнено резервний режим:", dbErr);
+                items = DEFAULT_ITEMS;
+            }
+
+            processDataAndRender();
+        }
+
+        function processDataAndRender() {
+            const now = new Date();
+            now.setHours(0, 0, 0, 0);
+
+            const activeCounts = { news: 0, events: 0, materials: 0 };
+
+            processedItems = items.map(item => {
+                let currentCategory = item.category;
+                let isExpired = false;
+
+                if (item.expireDate) {
+                    const expire = new Date(item.expireDate);
+                    expire.setHours(0, 0, 0, 0);
+                    if (expire < now) {
+                        isExpired = true;
+                    }
+                }
+
+                if (isExpired) {
+                    currentCategory = 'archive_materials';
+                } else {
+                    if (['news', 'events', 'materials'].includes(item.category)) {
+                        if (activeCounts[item.category] < 10) {
+                            activeCounts[item.category]++;
+                            currentCategory = item.category;
+                        } else {
+                            if (item.category === 'materials') {
+                                currentCategory = 'archive_useful';
+                            } else {
+                                currentCategory = 'archive_materials';
+                            }
+                        }
+                    } else {
+                        // Категорії Ради ВПО залишаються без автоматичного архівування
+                        currentCategory = item.category;
+                    }
+                }
+
+                return { ...item, currentCategory, isExpired };
+            });
+
+            renderTabs();
+            renderCards();
+        }
+
+        function renderTabs() {
+            const mainTabsContainer = document.getElementById('tabs-container');
+            const subTabsContainer = document.getElementById('archive-tabs-container');
+            const subtabsInner = document.getElementById('archive-subtabs');
+
+            if (inArchiveView || inVpoView) {
+                mainTabsContainer.classList.add('hidden');
+                subTabsContainer.classList.remove('hidden');
+
+                subtabsInner.innerHTML = '';
+                const currentSubCats = inArchiveView ? ARCHIVE_CATEGORIES : VPO_CATEGORIES;
+
+                Object.keys(currentSubCats).forEach(catId => {
+                    const isActive = catId === activeTab;
+                    const activeClasses = "text-primary border-b-2 border-primary";
+                    const inactiveClasses = "text-gray-500 hover:text-primary";
+                    
+                    const btn = document.createElement('button');
+                    btn.className = `flex-1 text-center pb-2.5 transition-all focus:outline-none ${isActive ? activeClasses : inactiveClasses}`;
+                    btn.textContent = currentSubCats[catId];
+                    btn.onclick = () => {
+                        activeTab = catId;
+                        renderTabs();
+                        renderCards();
+                    };
+                    subtabsInner.appendChild(btn);
+                });
+
+            } else {
+                mainTabsContainer.classList.remove('hidden');
+                subTabsContainer.classList.add('hidden');
+
+                mainTabsContainer.innerHTML = '';
+                Object.keys(MAIN_CATEGORIES).forEach(catId => {
+                    const isActive = catId === activeTab;
+                    const activeClasses = "text-primary border-b-2 border-primary";
+                    const inactiveClasses = "text-gray-500 hover:text-primary";
+                    
+                    const btn = document.createElement('button');
+                    btn.className = `flex-1 text-center pb-2.5 transition-all focus:outline-none text-[11px] xs:text-xs ${isActive ? activeClasses : inactiveClasses}`;
+                    btn.textContent = MAIN_CATEGORIES[catId];
+                    btn.onclick = () => {
+                        if (catId === 'archive') {
+                            inArchiveView = true;
+                            inVpoView = false;
+                            activeTab = 'archive_materials';
+                        } else if (catId === 'vpo') {
+                            inArchiveView = false;
+                            inVpoView = true;
+                            activeTab = 'vpo_materials';
+                        } else {
+                            inArchiveView = false;
+                            inVpoView = false;
+                            activeTab = catId;
+                        }
+                        renderTabs();
+                        renderCards();
+                    };
+                    mainTabsContainer.appendChild(btn);
+                });
+            }
+        }
+
+        function exitSubView() {
+            inArchiveView = false;
+            inVpoView = false;
+            activeTab = 'news';
+            renderTabs();
+            renderCards();
+        }
+
+        function renderCards() {
+            const container = document.getElementById('content-container');
+            container.innerHTML = '';
+
+            const filtered = processedItems.filter(item => item.currentCategory === activeTab);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="text-center text-gray-400 py-12 text-sm">Тут поки нічого немає...</div>`;
+                return;
+            }
+
+            filtered.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "relative bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:scale-[1.01] transition-all duration-200 cursor-pointer";
+                
+                if (isAdmin) {
+                    card.setAttribute('draggable', 'true');
+                    card.addEventListener('dragstart', (e) => handleDragStart(e, index));
+                    card.addEventListener('dragover', handleDragOver);
+                    card.addEventListener('drop', (e) => handleDrop(e, index));
+                    card.addEventListener('dragend', handleDragEnd);
+                }
+
+                card.onclick = (e) => {
+                    if (e.target.closest('.admin-control') || e.target.closest('a') || e.target.closest('button')) return;
+                    window.open(item.url, '_blank');
+                };
+
+                let actionButtons = '';
+                if (item.regUrl) {
+                    actionButtons = `
+                        <div class="mt-4 flex gap-2 border-t pt-3 admin-control">
+                            <a href="${item.url}" target="_blank" class="flex-1 text-center text-xs font-semibold py-2.5 px-3 border border-primary text-primary rounded-lg hover:bg-gray-50 transition">
+                                Детальніше
+                            </a>
+                            ${item.isExpired ? `
+                                <button disabled class="flex-1 text-center text-xs font-semibold py-2.5 px-3 bg-gray-200 text-gray-400 rounded-lg cursor-not-allowed">
+                                    Завершено
+                                </button>
+                            ` : `
+                                <a href="${item.regUrl}" target="_blank" class="flex-1 text-center text-xs font-semibold py-2.5 px-3 bg-primary text-white rounded-lg hover:bg-opacity-95 transition">
+                                    Зареєструватись
+                                </a>
+                            `}
+                        </div>
+                    `;
+                }
+
+                const adminMenuHTML = isAdmin ? `
+                    <div class="absolute right-2 top-2 admin-control z-20">
+                        <button onclick="toggleDropdown(event, '${item.id}')" class="p-1 rounded-full hover:bg-gray-100 text-gray-500 hover:text-gray-800 transition focus:outline-none">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path></svg>
+                        </button>
+                        <div id="dropdown-${item.id}" class="hidden absolute right-0 mt-1 w-28 bg-white border border-gray-200 rounded-lg shadow-xl text-xs overflow-hidden z-30">
+                            <button onclick="editItem('${item.id}')" class="w-full text-left px-3 py-2.5 hover:bg-gray-100 text-navy font-semibold border-b border-gray-100">Редагувати</button>
+                            <button onclick="deleteItem('${item.id}')" class="w-full text-left px-3 py-2.5 hover:bg-gray-50 text-crimson font-semibold border-b border-gray-100">Видалити</button>
+                            <button onclick="toggleDropdown(event, '${item.id}')" class="w-full text-left px-3 py-2.5 hover:bg-gray-50 text-gray-400 font-semibold">Скасувати</button>
+                        </div>
+                    </div>
+                    <div class="absolute left-2 top-2 text-gray-300 admin-control pointer-events-none">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 11H7V9h2v2zm4-2h-2v2h2V9zm4 0h-2v2h2V9zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"></path></svg>
+                    </div>
+                ` : '';
+
+                card.innerHTML = `
+                    ${adminMenuHTML}
+                    <div class="p-4 ${isAdmin ? 'pl-8' : ''}">
+                        <div class="flex items-center gap-4">
+                            <div class="w-24 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
+                                <img class="w-full h-full object-cover" src="${item.image}" alt="${item.title}" onerror="this.src='https://placehold.co/547x318/f3f4f6/9ca3af?text=No+Photo'">
+                            </div>
+                            <div class="flex-grow">
+                                <h3 class="font-semibold text-sm leading-snug text-gray-900">${item.title}</h3>
+                            </div>
+                        </div>
+                        ${actionButtons}
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // ================= АВТОРИЗАЦІЯ =================
+        function openLoginModal() {
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.getElementById('admin-password').focus();
+        }
+
+        function closeLoginModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('admin-password').value = '';
+            document.getElementById('login-error').classList.add('hidden');
+        }
+
+        function login() {
+            const pass = document.getElementById('admin-password').value;
+            if (pass === '6Vf–sneN=}N;:!n7NO8F') {
+                sessionStorage.setItem('sss_is_admin', 'true');
+                enableAdminMode();
+                closeLoginModal();
+                processDataAndRender();
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem('sss_is_admin');
+            isAdmin = false;
+            document.getElementById('admin-bar').classList.add('hidden');
+            document.getElementById('login-btn').classList.remove('hidden');
+            processDataAndRender();
+        }
+
+        function enableAdminMode() {
+            isAdmin = true;
+            document.getElementById('admin-bar').classList.remove('hidden');
+            document.getElementById('login-btn').classList.add('hidden');
+        }
+
+        // ================= DRAG & DROP СОРТУВАННЯ =================
+        let draggedIndex = null;
+
+        function handleDragStart(e, index) {
+            draggedIndex = index;
+            e.currentTarget.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleDragOver(e) { e.preventDefault(); }
+
+        async function handleDrop(e, targetIndex) {
+            e.preventDefault();
+            if (draggedIndex === null || draggedIndex === targetIndex) return;
+
+            const activeItems = processedItems.filter(i => i.currentCategory === activeTab);
+            const draggedItem = activeItems[draggedIndex];
+            const targetItem = activeItems[targetIndex];
+
+            const globalDraggedIdx = items.findIndex(i => i.id === draggedItem.id);
+            const globalTargetIdx = items.findIndex(i => i.id === targetItem.id);
+
+            if (globalDraggedIdx !== -1 && globalTargetIdx !== -1) {
+                const [removed] = items.splice(globalDraggedIdx, 1);
+                items.splice(globalTargetIdx, 0, removed);
+
+                const updates = items.map((item, idx) => ({
+                    id: item.id,
+                    title: item.title,
+                    url: item.url,
+                    category: item.category,
+                    image: item.image,
+                    reg_url: item.regUrl || null,
+                    expire_date: item.expireDate || null,
+                    position: idx
+                }));
+
+                if (supabaseClient) {
+                    try {
+                        const { error } = await supabaseClient.from('hub_items').upsert(updates);
+                        if (error) console.error("Помилка збереження сортування:", error);
+                    } catch (dragErr) {
+                        console.error("Помилка збереження позицій в БД:", dragErr);
+                    }
+                }
+
+                processDataAndRender();
+            }
+        }
+
+        function handleDragEnd(e) {
+            e.currentTarget.classList.remove('dragging');
+            draggedIndex = null;
+        }
+
+        // ================= КЕРУВАННЯ МЕНЮ КАРТКИ =================
+        function toggleDropdown(e, itemId) {
+            e.stopPropagation();
+            const targetDropdown = document.getElementById(`dropdown-${itemId}`);
+            
+            if (activeDropdownId && activeDropdownId !== itemId) {
+                const prev = document.getElementById(`dropdown-${activeDropdownId}`);
+                if (prev) prev.classList.add('hidden');
+            }
+
+            if (targetDropdown) {
+                targetDropdown.classList.toggle('hidden');
+                activeDropdownId = targetDropdown.classList.contains('hidden') ? null : itemId;
+            }
+        }
+
+        document.addEventListener('click', () => {
+            if (activeDropdownId) {
+                const dropdown = document.getElementById(`dropdown-${activeDropdownId}`);
+                if (dropdown) dropdown.classList.add('hidden');
+                activeDropdownId = null;
+            }
+        });
+
+        // ================= КЕРУВАННЯ МОДАЛЬНИМИ ВІКНАМИ =================
+        function openModal() {
+            document.getElementById('item-modal').classList.remove('hidden');
+            document.getElementById('modal-title').textContent = "Додати посилання";
+            document.getElementById('edit-id').value = "";
+            
+            document.getElementById('item-title').value = "";
+            document.getElementById('item-url').value = "";
+            document.getElementById('item-reg-url').value = "";
+            
+            const isArchive = activeTab === 'archive_materials' || activeTab === 'archive_useful';
+            const isVpo = activeTab === 'vpo_materials' || activeTab === 'vpo_links';
+            
+            if (isArchive) {
+                document.getElementById('item-category').value = 'news';
+            } else if (isVpo) {
+                document.getElementById('item-category').value = activeTab;
+            } else {
+                document.getElementById('item-category').value = activeTab;
+            }
+            
+            document.getElementById('item-file').value = "";
+            document.getElementById('item-image-url').value = "";
+            
+            if (fpInstance) fpInstance.clear();
+            
+            localUploadedFile = null;
+            resetImagePreview();
+        }
+
+        function closeModal() {
+            document.getElementById('item-modal').classList.add('hidden');
+        }
+
+        function previewUploadedImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            localUploadedFile = file;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('item-image-url').value = ""; 
+                setImagePreview(e.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+
+        function previewUrlImage() {
+            const url = document.getElementById('item-image-url').value.trim();
+            if (url) {
+                localUploadedFile = null;
+                setImagePreview(url);
+            } else {
+                resetImagePreview();
+            }
+        }
+
+        function setImagePreview(src) {
+            const img = document.getElementById('img-preview');
+            img.src = src;
+            img.classList.remove('hidden');
+            document.getElementById('preview-text').classList.add('hidden');
+        }
+
+        function resetImagePreview() {
+            const img = document.getElementById('img-preview');
+            img.src = "";
+            img.classList.add('hidden');
+            document.getElementById('preview-text').classList.remove('hidden');
+        }
+
+        async function uploadFileToSupabase(file) {
+            if (!supabaseClient) return "";
+            const fileExt = file.name.split('.').pop();
+            const fileName = `${Math.random().toString(36).substring(2, 15)}.${fileExt}`;
+            const filePath = `images/${fileName}`;
+
+            const { data, error } = await supabaseClient.storage
+                .from('hub-images')
+                .upload(filePath, file);
+
+            if (error) throw error;
+
+            const { data: { publicUrl } } = supabaseClient.storage
+                .from('hub-images')
+                .getPublicUrl(filePath);
+
+            return publicUrl;
+        }
+
+        async function saveItem() {
+            const saveBtn = document.getElementById('save-btn');
+            saveBtn.disabled = true;
+            saveBtn.textContent = "Збереження...";
+
+            const editId = document.getElementById('edit-id').value;
+            const title = document.getElementById('item-title').value.trim();
+            const url = document.getElementById('item-url').value.trim();
+            const category = document.getElementById('item-category').value;
+            const regUrl = document.getElementById('item-reg-url').value.trim();
+            const expireDate = document.getElementById('item-expire').value;
+
+            if (!title || !url) {
+                alert("Заповніть назву та посилання!");
+                saveBtn.disabled = false;
+                saveBtn.textContent = "Зберегти";
+                return;
+            }
+
+            try {
+                let imageUrl = "";
+
+                if (localUploadedFile && supabaseClient) {
+                    imageUrl = await uploadFileToSupabase(localUploadedFile);
+                } else {
+                    imageUrl = document.getElementById('item-image-url').value.trim();
+                }
+
+                const dbPayload = {
+                    title,
+                    url,
+                    category,
+                    reg_url: regUrl || null,
+                    expire_date: expireDate || null
+                };
+
+                if (imageUrl) {
+                    dbPayload.image = imageUrl;
+                }
+
+                if (supabaseClient) {
+                    if (editId) {
+                        const { error } = await supabaseClient
+                            .from('hub_items')
+                            .update(dbPayload)
+                            .eq('id', editId);
+                        if (error) throw error;
+                    } else {
+                        let minPos = 0;
+                        if (items.length > 0) {
+                            minPos = Math.min(...items.map(i => i.position || 0));
+                        }
+                        dbPayload.position = minPos - 1;
+
+                        const { error } = await supabaseClient
+                            .from('hub_items')
+                            .insert([dbPayload]);
+                        if (error) throw error;
+                    }
+                    closeModal();
+                    await fetchItems();
+                } else {
+                    // Локальний режим
+                    if (editId) {
+                        const idx = items.findIndex(i => i.id === editId);
+                        if (idx !== -1) {
+                            items[idx] = { ...items[idx], title, url, category, regUrl, expireDate, image: imageUrl || items[idx].image };
+                        }
+                    } else {
+                        let minPos = 0;
+                        if (items.length > 0) {
+                            minPos = Math.min(...items.map(i => i.position || 0));
+                        }
+                        items.unshift({ 
+                            id: Date.now().toString(), 
+                            title, 
+                            url, 
+                            category, 
+                            regUrl, 
+                            expireDate, 
+                            image: imageUrl, 
+                            position: minPos - 1 
+                        });
+                    }
+                    closeModal();
+                    processDataAndRender();
+                }
+            } catch (err) {
+                console.error("Помилка під час збереження:", err);
+                alert("Помилка збереження.");
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.textContent = "Зберегти";
+            }
+        }
+
+        function editItem(itemId) {
+            const item = items.find(i => i.id === itemId);
+            if (!item) return;
+
+            openModal();
+            document.getElementById('modal-title').textContent = "Редагувати посилання";
+            document.getElementById('edit-id').value = item.id;
+            
+            document.getElementById('item-title').value = item.title;
+            document.getElementById('item-url').value = item.url;
+            document.getElementById('item-category').value = item.category;
+            document.getElementById('item-reg-url').value = item.regUrl || "";
+            
+            if (item.expireDate && fpInstance) {
+                fpInstance.setDate(item.expireDate);
+            } else if (fpInstance) {
+                fpInstance.clear();
+            }
+            
+            if (item.image) {
+                if (item.image.startsWith("data:image") || item.image.includes('supabase.co/storage')) {
+                    setImagePreview(item.image);
+                } else {
+                    document.getElementById('item-image-url').value = item.image;
+                    setImagePreview(item.image);
+                }
+            }
+        }
+
+        async function deleteItem(itemId) {
+            if (confirm("Ви дійсно хочете видалити це посилання?")) {
+                if (supabaseClient) {
+                    try {
+                        const { error } = await supabaseClient
+                            .from('hub_items')
+                            .delete()
+                            .eq('id', itemId);
+
+                        if (error) {
+                            console.error(error);
+                            alert("Не вдалося видалити елемент з хмари.");
+                        } else {
+                            await fetchItems();
+                        }
+                    } catch (delErr) {
+                        console.error("Помилка видалення:", delErr);
+                    }
+                } else {
+                    items = items.filter(i => i.id !== itemId);
+                    processDataAndRender();
+                }
+            }
+        }
+    </script>
 </body>
 </html>
