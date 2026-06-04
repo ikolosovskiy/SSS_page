@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSS-UA | Важливі посилання</title>
+    <title>SSS | Links hub</title>
+    <!-- Додаємо фавікон -->
+    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    
     <!-- Підключаємо Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Підключаємо бібліотеку Supabase -->
@@ -625,6 +628,7 @@
             document.getElementById('login-error').classList.add('hidden');
         }
 
+        // Авторизація адміністратора
         function login() {
             const pass = document.getElementById('admin-password').value;
             if (pass === '6Vf–sneN=}N;:!n7NO8F') {
@@ -637,6 +641,7 @@
             }
         }
 
+        // Деавторизація
         function logout() {
             sessionStorage.removeItem('sss_is_admin');
             isAdmin = false;
@@ -662,6 +667,7 @@
 
         function handleDragOver(e) { e.preventDefault(); }
 
+        // Обробка завершення сортування
         async function handleDrop(e, targetIndex) {
             e.preventDefault();
             if (draggedIndex === null || draggedIndex === targetIndex) return;
@@ -684,7 +690,7 @@
                     category: item.category,
                     image: item.image,
                     reg_url: item.regUrl || null,
-                    expire_date: item.expire_date || null,
+                    expire_date: item.expireDate || null,
                     position: idx
                 }));
 
@@ -722,6 +728,7 @@
             }
         }
 
+        // Клік в будь-якому місці екрана закриває відкриті меню
         document.addEventListener('click', () => {
             if (activeDropdownId) {
                 const dropdown = document.getElementById(`dropdown-${activeDropdownId}`);
@@ -754,7 +761,7 @@
             document.getElementById('item-file').value = "";
             document.getElementById('item-image-url').value = "";
             
-            if (fpInstance) fpInstance.clear();
+            if (fpInstance) fpInstance.clear(); // Очищення Flatpickr
             
             localUploadedFile = null;
             resetImagePreview();
@@ -764,6 +771,7 @@
             document.getElementById('item-modal').classList.add('hidden');
         }
 
+        // Попередній перегляд завантаженого зображення
         function previewUploadedImage(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -777,6 +785,7 @@
             reader.readAsDataURL(file);
         }
 
+        // Попередній перегляд зображення за URL
         function previewUrlImage() {
             const url = document.getElementById('item-image-url').value.trim();
             if (url) {
@@ -801,6 +810,7 @@
             document.getElementById('preview-text').classList.remove('hidden');
         }
 
+        // Завантаження фото в Supabase Storage (Public bucket 'hub-images')
         async function uploadFileToSupabase(file) {
             if (!supabaseClient) return "";
             const fileExt = file.name.split('.').pop();
@@ -820,6 +830,7 @@
             return publicUrl;
         }
 
+        // Збереження картки в базу Supabase або в пам'ять
         async function saveItem() {
             const saveBtn = document.getElementById('save-btn');
             saveBtn.disabled = true;
@@ -868,6 +879,7 @@
                             .eq('id', editId);
                         if (error) throw error;
                     } else {
+                        // Вираховуємо нову позицію для першочергового відображення
                         let minPos = 0;
                         if (items.length > 0) {
                             minPos = Math.min(...items.map(i => i.position || 0));
@@ -916,6 +928,7 @@
             }
         }
 
+        // Завантаження даних елемента в форму для редагування
         function editItem(itemId) {
             const item = items.find(i => i.id === itemId);
             if (!item) return;
@@ -945,6 +958,7 @@
             }
         }
 
+        // Видалення картки
         async function deleteItem(itemId) {
             if (confirm("Ви дійсно хочете видалити це посилання?")) {
                 if (supabaseClient) {
