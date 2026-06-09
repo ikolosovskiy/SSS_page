@@ -95,7 +95,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </span>
-                <input type="text" id="search-input" placeholder="Пошук" class="w-full border border-gray-200 pl-10 pr-3 py-2.5 rounded-xl text-sm focus:outline-none focus:border-primary bg-white shadow-sm" onkeydown="if(event.key === 'Enter') performSearch()">
+                <input type="text" id="search-input" placeholder="Пошук" class="w-full border border-gray-200 pl-10 pr-10 py-2.5 rounded-xl text-sm focus:outline-none focus:border-primary bg-white shadow-sm" onkeydown="if(event.key === 'Enter') performSearch()">
+                <!-- Кнопка швидкого очищення (хрестик) -->
+                <button id="clear-search-btn" onclick="clearSearchInput()" class="hidden absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 focus:outline-none">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
             <button onclick="performSearch()" class="bg-primary hover:bg-opacity-90 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition duration-200 shadow-sm">
                 Знайти
@@ -365,11 +371,16 @@
 
             // Ініціалізуємо слухач для інпуту пошуку
             const searchInput = document.getElementById('search-input');
+            const clearBtn = document.getElementById('clear-search-btn');
             if (searchInput) {
                 searchInput.addEventListener('input', (e) => {
-                    if (e.target.value.trim() === '') {
+                    const val = e.target.value.trim();
+                    if (val === '') {
                         searchQuery = '';
+                        if (clearBtn) clearBtn.classList.add('hidden');
                         renderCards();
+                    } else {
+                        if (clearBtn) clearBtn.classList.remove('hidden');
                     }
                 });
             }
@@ -571,13 +582,14 @@
             const container = document.getElementById('content-container');
             container.innerHTML = '';
 
-            let filtered = processedItems.filter(item => item.currentCategory === activeTab);
+            let filtered = [];
 
-            // Фільтрація за пошуковим запитом
             if (searchQuery) {
-                filtered = filtered.filter(item => 
-                    item.title.toLowerCase().includes(searchQuery)
-                );
+                // Глобальний адаптивний пошук по всіх існуючих картках
+                filtered = processedItems.filter(item => matchAdaptive(item.title, searchQuery));
+            } else {
+                // Звичайне фільтрування за активною вкладкою
+                filtered = processedItems.filter(item => item.currentCategory === activeTab);
             }
 
             if (filtered.length === 0) {
@@ -589,7 +601,8 @@
                 const card = document.createElement('div');
                 card.className = "relative bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:scale-[1.01] transition-all duration-200 cursor-pointer";
                 
-                if (isAdmin) {
+                // Вимикаємо drag & drop сортування під час пошуку, щоб запобігти зсуву індексів різних категорій
+                if (isAdmin && !searchQuery) {
                     card.setAttribute('draggable', 'true');
                     card.addEventListener('dragstart', (e) => handleDragStart(e, index));
                     card.addEventListener('dragover', handleDragOver);
@@ -640,7 +653,7 @@
 
                 card.innerHTML = `
                     ${adminMenuHTML}
-                    <div class="p-4 ${isAdmin ? 'pl-8' : ''}">
+                    <div class="p-4 ${isAdmin && !searchQuery ? 'pl-8' : ''}">
                         <div class="flex items-center gap-4">
                             <div class="w-24 aspect-[547/318] bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden border border-gray-100">
                                 <img class="w-full h-full object-cover" src="${item.image}" alt="${item.title}" onerror="this.src='https://placehold.co/547x318/f3f4f6/9ca3af?text=No+Photo'">
@@ -657,7 +670,33 @@
             });
         }
 
-        // ================= ПОШУК =================
+        // ================= АДАПТИВНИЙ ПОШУК =================
+        function getUkrainianStems(text) {
+            return text
+                .toLowerCase()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?\"']/g, "") // видалення пунктуації
+                .split(/\s+/)
+                .filter(word => word.length > 0)
+                .map(word => {
+                    if (word.length <= 3) return word;
+                    // Відкидання поширених закінчень для пошуку за основою
+                    return word
+                        .replace(/(ими|ями|ові|еві|ами|ями|иму)$/, '')
+                        .replace(/(ий|ій|ому|ему|ах|ях|ів|ях)$/, '')
+                        .replace(/(и|і|а|я|у|е|о)$/, '');
+                });
+        }
+
+        function matchAdaptive(title, query) {
+            const queryStems = getUkrainianStems(query);
+            const titleClean = title.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?\"']/g, "");
+            
+            if (queryStems.length === 0) return false;
+
+            // Картка підходить, якщо в її назві присутні всі основи слів із запиту
+            return queryStems.every(stem => titleClean.includes(stem));
+        }
+
         function performSearch() {
             const searchInput = document.getElementById('search-input');
             if (searchInput) {
@@ -672,6 +711,15 @@
             if (searchInput) {
                 searchInput.value = '';
             }
+            const clearBtn = document.getElementById('clear-search-btn');
+            if (clearBtn) {
+                clearBtn.classList.add('hidden');
+            }
+        }
+
+        function clearSearchInput() {
+            clearSearch();
+            renderCards();
         }
 
         // ================= АВТОРИЗАЦІЯ =================
