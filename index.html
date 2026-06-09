@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SSS | Links hub</title>
-    <!-- Додаємо фавікон -->
-    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+
+    <link class="rounded-full" rel="icon" href="favicon.jpg" type="image/jpeg">
     
-    <!-- Підключаємо Tailwind CSS -->
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Підключаємо бібліотеку Supabase -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
-    <!-- Підключаємо Flatpickr для україномовного календаря -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/uk.js"></script>
 
     <script>
-        // Налаштування фірмових та акцентних кольорів організації в Tailwind
+   
         tailwind.config = {
             theme: {
                 extend: {
@@ -33,7 +32,7 @@
         }
     </script>
     <style>
-        /* Стиль для елемента, який перетягують */
+        
         .dragging {
             opacity: 0.5;
             border: 2px dashed #214e34;
@@ -42,7 +41,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col items-center p-4">
 
-    <!-- Панель адміна (показується тільки коли авторизовано) -->
+   
     <div id="admin-bar" class="w-full max-w-md bg-navy text-white text-xs px-4 py-2.5 rounded-xl mb-4 hidden flex items-center justify-between shadow-md">
         <span class="font-semibold flex items-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Режим адміна
@@ -57,12 +56,9 @@
         </div>
     </div>
 
-    <!-- Хедер з логотипом та кнопкою Увійти -->
+
     <header class="w-full max-w-md flex flex-col items-center my-4 px-2 relative">
-        <button id="login-btn" onclick="openLoginModal()" class="absolute right-2 top-0 z-30 text-xs border border-primary text-primary hover:bg-primary hover:text-white px-3 py-1.5 rounded-lg font-bold transition">
-            Увійти
-        </button>
-        <div class="w-full flex items-center justify-center mt-8">
+        <div class="w-full flex items-center justify-center mt-4">
             <img src="./1-02.png" alt="SSS Logo" class="w-full h-auto max-h-24 object-contain" onerror="this.src='https://sss-ua.org/wp-content/uploads/2022/11/logo_main.png'">
         </div>
     </header>
@@ -86,14 +82,35 @@
     <!-- Основний контейнер для карток -->
     <main id="content-container" class="w-full max-w-md space-y-4"></main>
 
-    <!-- ================= ЗАКРІПЛЕНІ ПОСИЛАННЯ ТА ГАРЯЧА ЛІНІЯ ================= -->
+    <!-- ================= БЛОК ПОШУКУ ================= -->
     <div class="w-full max-w-md mt-6 px-1">
+        <!-- Червона лінія (фірмовий колір) -->
+        <div class="h-[2px] bg-crimson w-full my-4"></div>
+        
+        <div class="flex gap-2">
+            <div class="relative flex-grow">
+                <!-- Іконка лупи -->
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </span>
+                <input type="text" id="search-input" placeholder="Пошук" class="w-full border border-gray-200 pl-10 pr-3 py-2.5 rounded-xl text-sm focus:outline-none focus:border-primary bg-white shadow-sm" onkeydown="if(event.key === 'Enter') performSearch()">
+            </div>
+            <button onclick="performSearch()" class="bg-primary hover:bg-opacity-90 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition duration-200 shadow-sm">
+                Знайти
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= ЗАКРІПЛЕНІ ПОСИЛАННЯ ТА ГАРЯЧА ЛІНІЯ ================= -->
+    <div class="w-full max-w-md mt-2 px-1">
         <!-- Синя лінія (фірмовий колір) -->
         <div class="h-[2px] bg-navy w-full my-4"></div>
         
         <!-- Закріплені посилання -->
         <div class="space-y-3">
-            <a href="https://www.facebook.com/WomanGAME" target="_blank" class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition duration-200">
+            <a href="https://www.instagram.com/tobeawoman.game" target="_blank" class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition duration-200">
                 <span class="font-semibold text-sm text-gray-800">Придбати гру «Бути жінкою»</span>
                 <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
@@ -160,9 +177,12 @@
         </a>
     </div>
 
-    <!-- Футер -->
-    <footer class="mb-6 text-[10px] text-gray-400 text-center">
-        © 2026 БФ «Стабілізейшен Суппорт Сервісез»
+    <!-- Футер з кнопкою Увійти внизу -->
+    <footer class="mb-6 text-[10px] text-gray-400 text-center flex flex-col items-center gap-3">
+        <span>© 2026 БФ «Стабілізейшен Суппорт Сервісез»</span>
+        <button id="login-btn" onclick="openLoginModal()" class="text-[10px] border border-primary text-primary hover:bg-primary hover:text-white px-3 py-1.5 rounded-lg font-bold transition">
+            Увійти
+        </button>
     </footer>
 
     <!-- ================= МОДАЛЬНЕ ВІКНО: ВХІД ================= -->
@@ -329,6 +349,7 @@
         let isAdmin = false;
         let activeDropdownId = null;
         let localUploadedFile = null;
+        let searchQuery = '';
 
         (async () => {
             fpInstance = flatpickr("#item-expire", {
@@ -341,6 +362,17 @@
                 enableAdminMode();
             }
             await fetchItems();
+
+            // Ініціалізуємо слухач для інпуту пошуку
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    if (e.target.value.trim() === '') {
+                        searchQuery = '';
+                        renderCards();
+                    }
+                });
+            }
         })();
 
         async function fetchItems() {
@@ -450,7 +482,6 @@
                             }
                         }
                     } else {
-                        // Категорії Ради ВПО залишаються без автоматичного архівування
                         currentCategory = item.category;
                     }
                 }
@@ -483,6 +514,7 @@
                     btn.className = `flex-1 text-center pb-2.5 transition-all focus:outline-none ${isActive ? activeClasses : inactiveClasses}`;
                     btn.textContent = currentSubCats[catId];
                     btn.onclick = () => {
+                        clearSearch();
                         activeTab = catId;
                         renderTabs();
                         renderCards();
@@ -504,6 +536,7 @@
                     btn.className = `flex-1 text-center pb-2.5 transition-all focus:outline-none text-[11px] xs:text-xs ${isActive ? activeClasses : inactiveClasses}`;
                     btn.textContent = MAIN_CATEGORIES[catId];
                     btn.onclick = () => {
+                        clearSearch();
                         if (catId === 'archive') {
                             inArchiveView = true;
                             inVpoView = false;
@@ -526,6 +559,7 @@
         }
 
         function exitSubView() {
+            clearSearch();
             inArchiveView = false;
             inVpoView = false;
             activeTab = 'news';
@@ -537,7 +571,14 @@
             const container = document.getElementById('content-container');
             container.innerHTML = '';
 
-            const filtered = processedItems.filter(item => item.currentCategory === activeTab);
+            let filtered = processedItems.filter(item => item.currentCategory === activeTab);
+
+            // Фільтрація за пошуковим запитом
+            if (searchQuery) {
+                filtered = filtered.filter(item => 
+                    item.title.toLowerCase().includes(searchQuery)
+                );
+            }
 
             if (filtered.length === 0) {
                 container.innerHTML = `<div class="text-center text-gray-400 py-12 text-sm">Тут поки нічого немає...</div>`;
@@ -616,20 +657,35 @@
             });
         }
 
+        // ================= ПОШУК =================
+        function performSearch() {
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchQuery = searchInput.value.trim().toLowerCase();
+                renderCards();
+            }
+        }
+
+        function clearSearch() {
+            searchQuery = '';
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.value = '';
+            }
+        }
+
         // ================= АВТОРИЗАЦІЯ =================
         function openLoginModal() {
             document.getElementById('login-modal').classList.remove('hidden');
             document.getElementById('admin-password').focus();
         }
 
-        // Очищення полів при закритті вікна входу
         function closeLoginModal() {
             document.getElementById('login-modal').classList.add('hidden');
             document.getElementById('admin-password').value = '';
             document.getElementById('login-error').classList.add('hidden');
         }
 
-        // Авторизація адміністратора
         function login() {
             const pass = document.getElementById('admin-password').value;
             if (pass === '6Vf–sneN=}N;:!n7NO8F') {
@@ -642,7 +698,6 @@
             }
         }
 
-        // Деавторизація
         function logout() {
             sessionStorage.removeItem('sss_is_admin');
             isAdmin = false;
@@ -668,7 +723,6 @@
 
         function handleDragOver(e) { e.preventDefault(); }
 
-        // Обробка завершення сортування
         async function handleDrop(e, targetIndex) {
             e.preventDefault();
             if (draggedIndex === null || draggedIndex === targetIndex) return;
@@ -729,7 +783,6 @@
             }
         }
 
-        // Клік в будь-якому місці екрана закриває відкриті меню
         document.addEventListener('click', () => {
             if (activeDropdownId) {
                 const dropdown = document.getElementById(`dropdown-${activeDropdownId}`);
@@ -762,7 +815,7 @@
             document.getElementById('item-file').value = "";
             document.getElementById('item-image-url').value = "";
             
-            if (fpInstance) fpInstance.clear(); // Очищення Flatpickr
+            if (fpInstance) fpInstance.clear();
             
             localUploadedFile = null;
             resetImagePreview();
@@ -772,7 +825,6 @@
             document.getElementById('item-modal').classList.add('hidden');
         }
 
-        // Попередній перегляд завантаженого зображення
         function previewUploadedImage(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -786,7 +838,6 @@
             reader.readAsDataURL(file);
         }
 
-        // Попередній перегляд зображення за URL
         function previewUrlImage() {
             const url = document.getElementById('item-image-url').value.trim();
             if (url) {
@@ -811,7 +862,6 @@
             document.getElementById('preview-text').classList.remove('hidden');
         }
 
-        // Завантаження фото в Supabase Storage (Public bucket 'hub-images')
         async function uploadFileToSupabase(file) {
             if (!supabaseClient) return "";
             const fileExt = file.name.split('.').pop();
@@ -831,7 +881,6 @@
             return publicUrl;
         }
 
-        // Збереження картки в базу Supabase або в пам'ять
         async function saveItem() {
             const saveBtn = document.getElementById('save-btn');
             saveBtn.disabled = true;
@@ -880,7 +929,6 @@
                             .eq('id', editId);
                         if (error) throw error;
                     } else {
-                        // Вираховуємо нову позицію для першочергового відображення
                         let minPos = 0;
                         if (items.length > 0) {
                             minPos = Math.min(...items.map(i => i.position || 0));
@@ -895,7 +943,6 @@
                     closeModal();
                     await fetchItems();
                 } else {
-                    // Локальний режим
                     if (editId) {
                         const idx = items.findIndex(i => i.id === editId);
                         if (idx !== -1) {
@@ -929,7 +976,6 @@
             }
         }
 
-        // Завантаження даних елемента в форму для редагування
         function editItem(itemId) {
             const item = items.find(i => i.id === itemId);
             if (!item) return;
@@ -959,7 +1005,6 @@
             }
         }
 
-        // Видалення картки
         async function deleteItem(itemId) {
             if (confirm("Ви дійсно хочете видалити це посилання?")) {
                 if (supabaseClient) {
